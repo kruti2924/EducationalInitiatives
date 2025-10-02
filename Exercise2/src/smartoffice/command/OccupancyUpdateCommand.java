@@ -2,6 +2,7 @@ package smartoffice.command;
 
 import smartoffice.model.MeetingRoom;
 import smartoffice.singleton.OfficeConfig;
+import smartoffice.util.Logger;
 
 public class OccupancyUpdateCommand implements Command {
     private int roomId;
@@ -18,7 +19,7 @@ public class OccupancyUpdateCommand implements Command {
         MeetingRoom room = config.getRoom(roomId);
 
         if (room == null) {
-            System.out.println("Invalid room number.");
+            Logger.getInstance().log("Invalid room number.");
             return;
         }
 

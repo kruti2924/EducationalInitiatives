@@ -3,6 +3,7 @@ package smartoffice.command;
 import smartoffice.model.Booking;
 import smartoffice.model.MeetingRoom;
 import smartoffice.singleton.OfficeConfig;
+import smartoffice.util.Logger;
 
 import java.time.LocalTime;
 
@@ -25,18 +26,18 @@ public class BookRoomCommand implements Command {
         MeetingRoom room = config.getRoom(roomId);
 
         if (room == null) {
-            System.out.println("Invalid room number.");
+            Logger.getInstance().log("Invalid room number.");
             return;
         }
 
         if (room.getBooking() != null) {
-            System.out.println("Room " + roomId + " is already booked. Cannot book again.");
+            Logger.getInstance().log("Room " + roomId + " is already booked. Cannot book again.");
             return;
         }
 
         Booking booking = new Booking(roomId, startTime, durationMinutes, user);
         room.setBooking(booking);
-        System.out.println("Room " + roomId + " booked from " + startTime + " for " + durationMinutes + " minutes.");
+        Logger.getInstance().log("Room " + roomId + " booked from " + startTime + " for " + durationMinutes + " minutes.");
     }
 }
 

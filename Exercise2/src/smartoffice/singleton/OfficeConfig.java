@@ -3,6 +3,7 @@ package smartoffice.singleton;
 import smartoffice.model.MeetingRoom;
 import java.util.ArrayList;
 import java.util.List;
+import smartoffice.util.Logger;
 
 public class OfficeConfig {
     private static OfficeConfig instance;   // singleton instance
@@ -27,16 +28,16 @@ public class OfficeConfig {
         for (int i = 1; i <= count; i++) {
             meetingRooms.add(new MeetingRoom(i));
         }
-        System.out.println("Office configured with " + count + " meeting rooms.");
+        Logger.getInstance().log("Office configured with " + count + " meeting rooms.");
     }
 
     // set max capacity for a room
     public void setRoomCapacity(int roomId, int capacity) {
         if (roomId > 0 && roomId <= meetingRooms.size()) {
             meetingRooms.get(roomId - 1).setCapacity(capacity);
-            System.out.println("Room " + roomId + " maximum capacity set to " + capacity + ".");
+            Logger.getInstance().log("Room " + roomId + " maximum capacity set to " + capacity + ".");
         } else {
-            System.out.println("Invalid room number.");
+            Logger.getInstance().log("Invalid room number.");
         }
     }
 

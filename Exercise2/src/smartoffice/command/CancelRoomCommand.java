@@ -2,6 +2,7 @@ package smartoffice.command;
 
 import smartoffice.model.MeetingRoom;
 import smartoffice.singleton.OfficeConfig;
+import smartoffice.util.Logger;
 
 public class CancelRoomCommand implements Command {
     private int roomId;
@@ -16,17 +17,17 @@ public class CancelRoomCommand implements Command {
         MeetingRoom room = config.getRoom(roomId);
 
         if (room == null) {
-            System.out.println("Invalid room number.");
+            Logger.getInstance().log("Invalid room number.");
             return;
         }
 
         if (room.getBooking() == null) {
-            System.out.println("Room " + roomId + " is not booked. Cannot cancel booking.");
+            Logger.getInstance().log("Room " + roomId + " is not booked. Cannot cancel booking.");
             return;
         }
 
         room.setBooking(null);
-        System.out.println("Booking for Room " + roomId + " cancelled successfully.");
+        Logger.getInstance().log("Booking for Room " + roomId + " cancelled successfully.");
     }
 }
 
