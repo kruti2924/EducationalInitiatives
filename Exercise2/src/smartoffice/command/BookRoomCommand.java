@@ -30,6 +30,16 @@ public class BookRoomCommand implements Command {
             return;
         }
 
+        if (durationMinutes <= 0) {
+            Logger.getInstance().log("Invalid booking duration. Must be greater than 0.");
+            return;
+        }
+
+        if (room.getCapacity() <= 0) {
+            Logger.getInstance().log("Room " + roomId + " capacity not configured. Cannot book.");
+            return;
+        }
+
         if (room.getBooking() != null) {
             Logger.getInstance().log("Room " + roomId + " is already booked. Cannot book again.");
             return;

@@ -21,6 +21,11 @@ public class CancelRoomCommand implements Command {
             return;
         }
 
+        if (room.getCapacity() <= 0) {
+            Logger.getInstance().log("Room " + roomId + " capacity not configured. Cannot cancel booking.");
+            return;
+        }
+
         if (room.getBooking() == null) {
             Logger.getInstance().log("Room " + roomId + " is not booked. Cannot cancel booking.");
             return;
