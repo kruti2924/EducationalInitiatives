@@ -58,7 +58,9 @@ public class MeetingRoom implements Subject {
     // ---------------- Observer methods ----------------
     @Override
     public void addObserver(Observer observer) {
-        observers.add(observer);
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
     @Override
